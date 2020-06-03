@@ -1,0 +1,19 @@
+.nav{
+  grid-area: n;
+  background-color: yellowgreen;
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 30px;
+  
+}
+.item a {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  padding-top: 20px;
+  font-size: large;
+  line-height: 50px;
+}  
+.item a.activeLink{
+  color: gold;
+}
