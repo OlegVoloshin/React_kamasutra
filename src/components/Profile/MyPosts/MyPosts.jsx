@@ -9,16 +9,17 @@ const MyPosts = (props) => {
 
     let newPostElenent = React.createRef();
 
-    let addPost =  () => {      
-      let text = newPostElenent.current.value;
-      props.addPost(text)//фция из state вызфвается после клика на кнопку
-    };
+    let addPost =  () => {   
+      debugger;   
+      // let text = newPostElenent.current.value;
+      props.dispatch({ type: 'ADD-POST' });//фция из state вызфвается после клика на кнопку
+    }
 
   let onPostChange = () => {
     let text = newPostElenent.current.value;
-    props.updateNewPostText(text)//фция из мира бизнеса(state) и ей передаем новый текст
+    props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text });//фция из мира бизнеса(state) и ей передаем новый текст
     //который пользователь хочет передать 
-  };
+  }
 
   return (
     <div>
