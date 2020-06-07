@@ -1,6 +1,8 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/State'
+
 
 const MyPosts = (props) => {
     
@@ -9,15 +11,13 @@ const MyPosts = (props) => {
 
     let newPostElenent = React.createRef();
 
-    let addPost =  () => {   
-      debugger;   
-      // let text = newPostElenent.current.value;
-      props.dispatch({ type: 'ADD-POST' });//фция из state вызфвается после клика на кнопку
+    let addPost =  () => {           
+      props.dispatch(addPostActionCreator());//фция из state вызфвается после клика на кнопку
     }
 
   let onPostChange = () => {
     let text = newPostElenent.current.value;
-    props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text });//фция из мира бизнеса(state) и ей передаем новый текст
+    props.dispatch(updateNewPostTextActionCreator(text));//фция из мира бизнеса(state) и ей передаем новый текст
     //который пользователь хочет передать 
   }
 
