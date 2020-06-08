@@ -10,7 +10,8 @@ import { BrowserRouter } from 'react-router-dom';
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)} />
+                <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+                {/* state - обьект, а dispatch - это callbackи */}
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

@@ -23,7 +23,7 @@ const App = (props) => {
           render={() => <Profile profilePage={props.state.profilePage}
            dispatch={props.dispatch} />} />
         <Route exact path='/dialogs'
-          render={() => <Dialogs state={props.state.dialogsPage} />} />
+          render={() => <Dialogs store={props.store} />} />
         {/*exact указывает что только /dialogs путь вызывает компоненту Dialogs  */}
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />

@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 let store = {
 
@@ -26,7 +28,8 @@ let store = {
                 {id: 3, message: 'Sorry'},
                 {id: 4, message: 'Bye'},
                 {id: 5, message: 'what?'}
-            ]
+            ],
+            newMessageBody: ''
         }
     },
     
@@ -58,15 +61,29 @@ let store = {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
         }
+        else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body;   
+            this._callSubscriber(this._state);
+        }
+        else if (action.type === SEND_MESSAGE){
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.messages.push({id: 6, message: body})
+            this._callSubscriber(this._state);
+        }
     }
 }
 
-export const addPostActionCreator = () => {
-    return ADD_POST;
-  }
+export const addPostActionCreator = () =>  ({type: ADD_POST}) //можно return опустить
   
 export const updateNewPostTextActionCreator = (text) => {
-    return UPDATE_NEW_POST_TEXT;
+    return {type: UPDATE_NEW_POST_TEXT, newText: text};
+}
+export const sendMessageCreator = () => {
+    return {type: SEND_MESSAGE};//экспортируем условия обьекта {}
+}
+export const updateNewMessageCreator = (body) => {
+    return {type: UPDATE_NEW_MESSAGE_BODY, body: body};
   }
 
 export default store;
