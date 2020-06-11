@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './redux/State'
+import store from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 
  let renderEntireTree = (state) => {
+     debugger;
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -19,7 +20,10 @@ import { BrowserRouter } from 'react-router-dom';
 };
 renderEntireTree(store.getState()); 
 
-store.subscribe(renderEntireTree);
+store.subscribe(() => {
+    let state = store.getState();//после измениения стейт уведомляем подписчика и снова берем новый стейт и рендерим EntireTree с новым стейтом
+    renderEntireTree(state);
+});
 
 
 // If you want your app to work offline and load faster, you can change
