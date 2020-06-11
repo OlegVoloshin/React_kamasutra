@@ -2,13 +2,12 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Messages/Message'
-import {sendMessageCreator, updateNewMessageCreator} from '../../redux/dialogs_reducer';
 
 
 
 const Dialogs = (props) => {
 
-    let state = props.store.getState().dialogsPage;
+    let state = props.dialogsPage;
 
     let dialogElements = 
     state.dialogs.map ((d) => <DialogItem img={d.img} name={d.name} id={d.id} />);
@@ -17,12 +16,12 @@ const Dialogs = (props) => {
     let newMessageBody = state.newMessageBody;
     
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageCreator());
+        props.sendMessage();
     }
     let onNewMessageChange = (e) => {
         let body = e.target.value;//target это и есть textarea, value в момент когда пользовательзователь 
         //вводит текст
-        props.store.dispatch(updateNewMessageCreator(body));
+        props.updateNewMessageBody(body);
     }
     return (
         <div className={s.dialogs}>
