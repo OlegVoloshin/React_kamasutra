@@ -20,10 +20,9 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/profile'
-          render={() => <Profile store={props.store} />} />
+          render={() => <Profile />} />
         <Route exact path='/dialogs'
-          render={() => <DialogsContainer store={props.store} />} />
-        {/*exact указывает что только /dialogs путь вызывает компоненту Dialogs  */}
+          render={() => <DialogsContainer />} />
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />
