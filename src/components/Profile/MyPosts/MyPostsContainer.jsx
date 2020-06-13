@@ -1,23 +1,25 @@
 import React from 'react';
 import MyPosts from './MyPosts'
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profile_reducer';
-import StoreContext from '../../../StoreContext';
-//Важно, чтобы после <StoreContext.Consumer> тега остальной код начинался с новой строки!
-const MyPostsContainer = () => {
-  return <StoreContext.Consumer> 
-    {(store) => {
-      let state = store.getState();
-      let addPost = () => {
-        store.dispatch(addPostActionCreator());//фция из state вызфвается после клика на кнопку
-      }
+import { connect } from 'react-redux';
 
-      let onPostChange = (text) => {
-        let action = updateNewPostTextActionCreator(text);
-        store.dispatch(action);
-      }
-      return <MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} />
+let mapStateToProps = (state) => {
+  return {
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
+  }
+}
+let mapDispatchToProps = (dispatch) => {
+  return {
+    updateNewPostText: (text) => {
+      let action = updateNewPostTextActionCreator(text);
+      dispatch(action);
+    },
+    addPost: () => {
+      dispatch(addPostActionCreator());
     }
   }
-  </StoreContext.Consumer>
 }
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
 export default MyPostsContainer;
