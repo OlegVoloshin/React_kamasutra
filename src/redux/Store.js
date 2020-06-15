@@ -42,6 +42,7 @@ let store = {
         
         return this._state;
     },
+
     subscribe(observer) {
         this._callSubscriber = observer; //обсервер это паттерн наблюдатель
     },
@@ -57,7 +58,6 @@ let store = {
 }
 
 export default store;
-window.store = store;
 
 // props.state.dialogsPage.dialogs.map(())
 // пример движения через пропсы
