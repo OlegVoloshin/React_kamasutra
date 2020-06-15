@@ -20,21 +20,27 @@ let initialState = {
 };
 const dialogsReducer = (state = initialState, action) => {
 
-    let copyState = {
-        ...state,
-        messages: [...state.messages]
-    };// делаем копию state(обновление state имьютабельным способом, те не делаем мутацию, а копию)
-
     switch(action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {           
-            copyState.newMessageBody = action.body;  
-            return copyState;
+        case UPDATE_NEW_MESSAGE_BODY: {     
+            return {
+                ...state,
+                newMessageBody: action.body
+            }   
+            // copyState = {...state};   
+            // copyState.newMessageBody = action.body;  
+            // return copyState;
         }
         case SEND_MESSAGE: {
             let body = state.newMessageBody;
-            copyState.newMessageBody = '';
-            copyState.messages.push({id: 6, message: body})
-            return copyState;
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: 6, message: body}]
+            }
+            // let body = state.newMessageBody;
+            // copyState.newMessageBody = '';
+            // copyState.messages.push({id: 6, message: body})
+            // return copyState;
         }
         default:
             return state;

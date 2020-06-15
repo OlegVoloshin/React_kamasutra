@@ -18,7 +18,6 @@ const MyPosts = (props) => {
     let text = newPostElenent.current.value;
     props.updateNewPostText(text);
   }
-
   return (
     <div>
       <h3>My Post</h3>

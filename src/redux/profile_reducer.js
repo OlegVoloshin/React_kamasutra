@@ -6,14 +6,10 @@ let initialState = {
         { id: 1, message: 'Hi! How are you?', likesCount: 4 },
         { id: 2, message: 'It is is my first post!', likesCount: 34 },
         { id: 3, message: 'What is going on?', likesCount: 14 }
-    ]
+    ],
+    newPostText: 'it kamasutra'
 };
 const profileReducer = (state = initialState, action) => {
-
-    let copyState = { //let copyState = { ...state };//делаем копию state(обновление state имьютабельным способом, те не делаем мутацию, а копию)
-        ...state,
-        posts: [...state.posts]    
-    };
 
     switch (action.type) {
         case ADD_POST: {
@@ -22,13 +18,17 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likesCount: 0
             };
-            copyState.posts.push(newPost);
-            copyState.newPostText = '';  // занулили зачистили текстарею
-            return copyState;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],// запушили newPost
+                newPostText: '' // занулили зачистили текстарею
+            }
         }
         case UPDATE_NEW_POST_TEXT: {
-            copyState.newPostText = action.newText;
-            return copyState;
+            {
+                return { ...state,
+                newPostText: action.newText }
+            }
         }
         default:
             return state;
