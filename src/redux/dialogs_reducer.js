@@ -19,16 +19,19 @@ let initialState = {
     newMessageBody: ''
 };
 const dialogsReducer = (state = initialState, action) => {
+
+    let copyState = {
+        ...state,
+        messages: [...state.messages]
+    };// делаем копию state(обновление state имьютабельным способом, те не делаем мутацию, а копию)
+
     switch(action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {
-            let copyState = {...state};// делаем копию state
+        case UPDATE_NEW_MESSAGE_BODY: {           
             copyState.newMessageBody = action.body;  
             return copyState;
         }
         case SEND_MESSAGE: {
-            let copyState = {...state};
-            copyState.messages = [...state.messages];
-            let body = copyState.newMessageBody;
+            let body = state.newMessageBody;
             copyState.newMessageBody = '';
             copyState.messages.push({id: 6, message: body})
             return copyState;
@@ -37,6 +40,7 @@ const dialogsReducer = (state = initialState, action) => {
             return state;
     }
 }
+
 export const sendMessageCreator = () => {
     return {type: SEND_MESSAGE};//экспортируем условия обьекта {}
 }
