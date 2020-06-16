@@ -2,13 +2,13 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS'
 
-// let initialState = {
-//     users: [
-//         { id: 1, folloewd: false, fullName: 'Olegan', status: 'I am a boss!', location: { city: 'Kyiv', country: 'Ukraine' } },
-//         { id: 2, folloewd: true, fullName: 'Dohod', status: 'You whant some?', location: { city: 'Lugansk', country: 'Ukraine' } },
-//         { id: 3, folloewd: false, fullName: 'Stasik', status: 'Here you are!', location: { city: 'New York', country: 'USA' } }
-//     ]
-// };
+let initialState = {
+    users: [
+        { id: 1, photoUrl: 'https://image.freepik.com/free-vector/_8169-228.jpg', folloewd: false, fullName: 'Olegan', status: 'I am a boss!', location: { city: 'Kyiv', country: 'Ukraine' } },
+        { id: 2, photoUrl: 'https://image.freepik.com/free-vector/_10308-81.jpg', folloewd: true, fullName: 'Dohod', status: 'You whant some?', location: { city: 'Lugansk', country: 'Ukraine' } },
+        { id: 3, photoUrl: 'https://image.freepik.com/free-vector/_139366-185.jpg', folloewd: false, fullName: 'Stasik', status: 'Here you are!', location: { city: 'New York', country: 'USA' } }
+    ]
+};
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
