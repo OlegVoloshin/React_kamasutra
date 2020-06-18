@@ -4,9 +4,9 @@ const SET_USERS = 'SET_USERS'
 
 let initialState = {
     users: [
-        { id: 1, photoUrl: 'https://image.freepik.com/free-vector/_8169-228.jpg', folloewd: false, fullName: 'Olegan', status: 'I am a boss!', location: { city: 'Kyiv', country: 'Ukraine' } },
-        { id: 2, photoUrl: 'https://image.freepik.com/free-vector/_10308-81.jpg', folloewd: true, fullName: 'Dohod', status: 'You whant some?', location: { city: 'Lugansk', country: 'Ukraine' } },
-        { id: 3, photoUrl: 'https://image.freepik.com/free-vector/_139366-185.jpg', folloewd: false, fullName: 'Stasik', status: 'Here you are!', location: { city: 'New York', country: 'USA' } }
+        { id: 1, photoUrl: 'https://image.freepik.com/free-vector/_8169-228.jpg', followed: false, fullName: 'Olegan', status: 'I am a boss!', location: { city: 'Kyiv', country: 'Ukraine' } },
+        { id: 2, photoUrl: 'https://image.freepik.com/free-vector/_10308-81.jpg', followed: true, fullName: 'Dohod', status: 'You whant some?', location: { city: 'Lugansk', country: 'Ukraine' } },
+        { id: 3, photoUrl: 'https://image.freepik.com/free-vector/_139366-185.jpg', followed: false, fullName: 'Stasik', status: 'Here you are!', location: { city: 'New York', country: 'USA' } }
     ]
 };
 const usersReducer = (state = initialState, action) => {
@@ -17,7 +17,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(u => {//проходим по массиву имеющегося state
                     if (u.id === action.userID) {//если совпал id
-                        return { ...u, folloewd: true }//возвращаем копию и меняем на true
+                        return { ...u, followed: true }//возвращаем копию и меняем на true
                     }
 
                     return u;
@@ -28,7 +28,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(u => {//проходим по массиву имеющегося state
                     if (u.id === action.userID) {//если совпал id
-                        return { ...u, folloewd: false }//возвращаем копию и меняем на false
+                        return { ...u, followed: false }//возвращаем копию и меняем на false
                     }
                     return u;
                 })
