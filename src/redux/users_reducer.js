@@ -1,13 +1,14 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS'
+const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 let initialState = {
-    users: [
-        { id: 1, photoUrl: 'https://image.freepik.com/free-vector/_8169-228.jpg', followed: false, fullName: 'Olegan', status: 'I am a boss!', location: { city: 'Kyiv', country: 'Ukraine' } },
-        { id: 2, photoUrl: 'https://image.freepik.com/free-vector/_10308-81.jpg', followed: true, fullName: 'Dohod', status: 'You whant some?', location: { city: 'Lugansk', country: 'Ukraine' } },
-        { id: 3, photoUrl: 'https://image.freepik.com/free-vector/_139366-185.jpg', followed: false, fullName: 'Stasik', status: 'Here you are!', location: { city: 'New York', country: 'USA' } }
-    ]
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 };
 const usersReducer = (state = initialState, action) => {
 
@@ -34,18 +35,24 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
             case SET_USERS: 
-                return {...state, users: [...state.users, ...action.users]}// берем копию старых пользователей ...state.users и дописываем туда новых userov из action, тк user не один, а массив, то делаем спред-оператор ...action.users. тоесть склеиваем 2 массива из state и action
-
+                return {...state, users: action.users}
+            case SET_CURRENT_PAGE: 
+                return {...state, currentPage: action.currentPage}// берем копию старых пользователей ...state.users и дописываем туда новых userov из action, тк user не один, а массив, то делаем спред-оператор ...action.users. тоесть склеиваем 2 массива из state и action
+            case SET_TOTAL_USERS_COUNT: 
+                return {...state, totalUsersCount: action.total}
         default:
             return state;
     }
 }
 
-export const followAC = (userID) => ({ type: FOLLOW, userID }) //можно return опустить
+export const followAC = (userID) => ({ type: FOLLOW, userID }) 
+//можно return опустить
 
 export const unfollowAC = (userID) => {
     return { type: UNFOLLOW, userID };
 }
 export const setUsersAC = (users) => ({ type: SET_USERS, users })
+export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCountAC = (total) => ({type: SET_TOTAL_USERS_COUNT, total})
 
 export default usersReducer;

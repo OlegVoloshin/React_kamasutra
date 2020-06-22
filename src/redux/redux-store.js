@@ -5,8 +5,10 @@ import sidebarReducer from "./sidebar_reducer";
 import usersReducer from "./users_reducer";
 
 
-let reducers = combineReducers({// обьект состоящий из редьюсеров (нужно воспринимать как наш state), combineReducers фция встроенная в Redux
-    profilePage: profileReducer,//свойство profilePage и за него отвечает profileReducer
+let reducers = combineReducers({ 
+    // обьект состоящий из редьюсеров (нужно воспринимать как наш state), combineReducers фция встроенная в Redux
+    profilePage: profileReducer, 
+    //свойство profilePage и за него отвечает profileReducer
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer
