@@ -1,7 +1,12 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import Preloader from '../../common/preloader/Preloader';
 
 const ProfileInfo = (props) => {
+    if(!props.profile) {//проверка нужна чтобы пока не придет ответ с аякс запроса крутилась крутилка, иначе значение profile == null
+        return <Preloader />
+    }
+    
     return (
         <div>
             <div>
@@ -9,6 +14,7 @@ const ProfileInfo = (props) => {
             </div>
 
             <div>
+                <img src={props.profile.photos.large} />
                 ava + description
             </div>
         </div>

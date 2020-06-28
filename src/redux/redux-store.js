@@ -16,5 +16,5 @@ let reducers = combineReducers({
 
 let store = createStore(reducers);
 
-
+window.store = store;// чтобы в консоле хрома проверять меняется store или нет
 export default store;
