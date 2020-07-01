@@ -8,9 +8,8 @@ import { withRouter } from 'react-router-dom';
 
 
 class ProfileContainer extends React.Component {
-
     componentDidMount() {//все side эффекты делаются в методе жизненного цикла обьекта созданного в нашем классе
-        
+
         let userId = this.props.match.params.userId;
         if(!userId) {userId = 2}// если в url не введем ни какого userId то по дефолту будет 2
 
@@ -20,7 +19,6 @@ class ProfileContainer extends React.Component {
             });
 
     }
-
     render() {
         
         return (
