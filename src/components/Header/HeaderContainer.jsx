@@ -10,9 +10,13 @@ class HeaderContainer extends React.Component {//классовая компон
 
     componentDidMount() {
         
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})// withCredentials авторизационная кука(настройки запроса)
             .then(response => {
-                this.props.setAuthUserData
+                if(response.data.resultCode === 0){
+                    let {id, email, login} = response.data.data;
+                    this.props.setAuthUserData(id, email, login);  
+                }
+                
             });
     }
     
@@ -26,8 +30,7 @@ class HeaderContainer extends React.Component {//классовая компон
 
 let mapStateToProps = (state) => {//передаем state
     return {
-        userID: state.auth.userID,
-        email: state.auth.email,
+       isAuth: state.auth.isAuth,
         login: state.auth.login
         //isFetching: state.usersPage.isFetching
     }
