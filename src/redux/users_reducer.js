@@ -4,13 +4,15 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'// включить фетчинг крутилка
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []// чтобы не были задизэблины все кнопки. Урок 64
 };
 const usersReducer = (state = initialState, action) => {
 
@@ -44,6 +46,10 @@ const usersReducer = (state = initialState, action) => {
                 return {...state, totalUsersCount: action.total}
             case TOGGLE_IS_FETCHING: 
                 return {...state, isFetching: action.boolean}
+                case TOGGLE_IS_FOLLOWING_PROGRESS:
+                    return {...state, followingInProgress: action.isFetching 
+                        ?[...state, followingInProgress, action.userID] 
+                        : state, followingInProgress.filter(id=> id != action.userID)}
         default:
             return state;
     }
@@ -59,5 +65,6 @@ export const setUsers = (users) => ({ type: SET_USERS, users })//возвращ�
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (total) => ({type: SET_TOTAL_USERS_COUNT, total})
 export const setIsFetching = (boolean) => ({type: TOGGLE_IS_FETCHING, boolean})
+export const toggleIsFollowingProgress = (isFetching, userID) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userID})
 
 export default usersReducer;
