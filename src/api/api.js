@@ -4,33 +4,43 @@ const instance = axios.create({//создали обьект инстанс ак
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        "API-KEY": "b0d850c7-e22f-4639-a8a1-c7d829ee7d36"
+        "API-KEY": "fd749a7f-721d-48a9-bbf5-0b1e12dab05b"
     }
 })
 
 export const usersAPI = {//
-    getUsers: (currentPage, pageSize) => {
+    getUsers(currentPage, pageSize) {
         return instance.get(`users?page=${currentPage}&
         count=${pageSize}`)//подключается после базового урла
             .then(response => {
                 return response.data;//отдаем только дату тк остальное не нужно компоненте
             })
+    },
+
+    follow(userId) {
+        return instance.post(`follow/${userId}`)    
+        .then(response => {
+            return response.data;
+        })
+    },
+
+    unfollow(userId) {
+       return instance.delete(`follow/${userId}`)    
+       .then(response => {
+        return response.data;
+    })        
+    },    
+    getProfile(userId) {
+        return instance.get(`profile/` + userId)
+            .then(response => {
+                return response.data;
+            })
     }
 }
-
 export const authAPI = {
-    getAuth: () => {
+    getAuth() {
         return instance.get(`auth/me`).then(response => {
             return response.data;
         })
     }
 }
-
-export const profileAPI = {
-    getProfile: (userId) => {
-        return instance.get(`profile/`+ userId)
-        .then(response => {
-            return response.data;
-        })
-    }
- }
