@@ -23,6 +23,8 @@ const Dialogs = (props) => {
         //вводит текст
         props.updateNewMessageBody(body);
     }
+
+    
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
