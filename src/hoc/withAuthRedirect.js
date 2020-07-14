@@ -1,12 +1,12 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 let mapStateToPropsRedirect = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-export const withAuthRedirect = (Component) => {
+export const withAuthRedirect =(Component) => {
 
     class RedirectComponent extends React.Component {//можно классовую компоненту можно функциональную
         render() {
