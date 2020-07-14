@@ -31,15 +31,35 @@ export const usersAPI = {//
     })        
     },    
     getProfile(userId) {
-        return instance.get(`profile/` + userId)
-            .then(response => {
-                return response.data;
-            })
+        console.warn('Obsolete method. Please profileAPI object.')
+        return profileAPI.getProfile(userId)
     }
 }
 export const authAPI = {
     getAuth() {
         return instance.get(`auth/me`).then(response => {
+            return response.data;
+        })
+    }
+}
+
+export const profileAPI = {//
+   
+    getProfile(userId) {
+        return instance.get(`profile/` + userId)
+            .then(response => {
+                return response.data;
+            })
+    },
+    getStatus(userId) {
+        return instance.get(`profile/status/` + userId )
+        .then(response => {
+            return response.data;
+        })
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status`, { status: status } )// отправляем обьект со св-вом статус, этого требует API документация    
+        .then(response => {
             return response.data;
         })
     }
