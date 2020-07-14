@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader/Preloader';
 import smile from '../../../assets/images/smile.png';
 import sad from '../../../assets/images/sad.png'
+import ProfileStatus from './ProfileStatus'
 
 
 const ProfileInfo = (props) => {
@@ -14,6 +15,7 @@ const ProfileInfo = (props) => {
         <div>            
             <div>
                 <img src={props.profile.photos.large} />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
             <div>
                 <ul>
