@@ -25,6 +25,13 @@ class ProfileStatus extends React.Component {//class создает одноти
             status: e.currentTarget.value
         })
     }
+
+    componentDidUpdate(prevProps, prevState) {//если изменился глобальный статус, то сэтаем локальный
+        if(prevProps.status !== this.props.status)// если в предидущих пропсах статус не равен статусу в текущих пропсах
+        this.setState({
+            status: this.props.status
+        })
+    }
     
     render() {
         return (
