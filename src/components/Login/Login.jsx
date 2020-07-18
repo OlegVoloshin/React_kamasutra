@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
 const LoginForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>//
+    return <form onSubmit={props.handleSubmit}>
             <div>
                 <Field placeholder={"LOGIN"} name={"login"} component={"input"} />
             </div>
@@ -10,7 +10,7 @@ const LoginForm = (props) => {
                 <Field placeholder={"PASSWORD"} name={"password"} component={"input"} />
             </div>
             <div>
-                <Field component={"input"} name={"rememberMe"} type={"checkbox"} />remember me
+                <Field type={"checkbox"}  name={"rememberMe"} component={"input"}  />remember me
             </div>
             <div>
                 <button>Login</button>
