@@ -9,13 +9,15 @@ const MyPosts = (props) => {
     likesCount={p.likesCount} />);
 
   let newPostElenent = React.createRef();
-
+// создаем ссылку на элемент из jsx
   let onAddPost = () => {
     props.addPost();
   };
 
   let onPostChange = () => {
     let text = newPostElenent.current.value;
+    // current ссылается на нативный html элемент, value это его значение
+
     props.updateNewPostText(text);
   }
   return (
